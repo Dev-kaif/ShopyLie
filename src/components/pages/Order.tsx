@@ -66,7 +66,7 @@ export default function OrdersPage() {
             <TableRow>
               <TableHead className="w-24">Order ID</TableHead>
               <TableHead>Customer ID</TableHead>
-              <TableHead># of Products</TableHead>
+              <TableHead>No of Products</TableHead>
               <TableHead>Status</TableHead>
               <TableHead className="text-right">Total Amount</TableHead>
             </TableRow>
