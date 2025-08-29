@@ -1,7 +1,7 @@
 import { Search, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTheme } from "next-themes";
 import {
   CommandDialog,
@@ -18,7 +18,6 @@ const pageTitles: Record<string, string> = {
   "/products": "Products",
   "/orders": "Orders",
   "/analytics": "Analytics",
-  "/preferences": "Appearance & Preferences",
 };
 
 function ThemeToggle() {
@@ -37,16 +36,40 @@ function ThemeToggle() {
   );
 }
 
+function SearchTrigger({ onClick }: { onClick: () => void }) {
+  return (
+    <Button
+      variant="outline"
+      className="h-9 w-64 justify-between items-center px-3 text-muted-foreground hover:text-foreground"
+      onClick={onClick}
+    >
+      <div className="flex items-center gap-2">
+        <Search className="h-4 w-4" />
+        <span>Search...</span>
+      </div>
+      <span className="text-xs font-mono bg-muted px-1.5 py-0.5 rounded-sm">
+        ⌘K
+      </span>
+    </Button>
+  );
+}
+
 export function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const pageTitle = pageTitles[location.pathname] || "Dashboard";
-
   const [isCommandMenuOpen, setCommandMenuOpen] = useState(false);
 
-  // Keyboard shortcut listener for Cmd+K
+  // keyboard shortcut: ⌘K / Ctrl+K
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (
+        (e.metaKey || e.ctrlKey) &&
+        e.key.toLowerCase() === "k" &&
+        !(e.target instanceof HTMLInputElement) &&
+        !(e.target instanceof HTMLTextAreaElement) &&
+        !(e.target instanceof HTMLElement && e.target.isContentEditable)
+      ) {
         e.preventDefault();
         setCommandMenuOpen((open) => !open);
       }
@@ -55,6 +78,11 @@ export function Header() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  const runCommand = (path: string) => {
+    navigate(path);
+    setCommandMenuOpen(false);
+  };
+
   return (
     <>
       <header className="h-16 border-b border-border bg-card/50 backdrop-blur-sm flex items-center justify-between px-6">
@@ -62,16 +90,8 @@ export function Header() {
           <SidebarTrigger />
           <h1 className="font-semibold text-xl">{pageTitle}</h1>
         </div>
-
         <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-9 w-9"
-            onClick={() => setCommandMenuOpen(true)}
-          >
-            <Search className="h-4 w-4" />
-          </Button>
+          <SearchTrigger onClick={() => setCommandMenuOpen(true)} />
           <ThemeToggle />
         </div>
       </header>
@@ -81,9 +101,18 @@ export function Header() {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Suggestions">
-            <CommandItem>Products</CommandItem>
-            <CommandItem>Analytics</CommandItem>
-            <CommandItem>Settings</CommandItem>
+            <CommandItem onSelect={() => runCommand("/")}>
+              Dashboard
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand("/products")}>
+              Products
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand("/orders")}>
+              Orders
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand("/analytics")}>
+              Analytics
+            </CommandItem>
           </CommandGroup>
         </CommandList>
       </CommandDialog>

@@ -1,4 +1,4 @@
-import { BarChart3, Package, Settings, Home, Command, ShoppingCart } from "lucide-react";
+import { BarChart3, Package, Home, Command, ShoppingCart } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
   Sidebar,
@@ -16,7 +16,6 @@ const items = [
   { title: "Products", url: "/products", icon: Package },
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
   { title: "Orders", url: "/orders", icon: ShoppingCart },
-  { title: "Settings", url: "/preferences", icon: Settings },
 ];
 
 export function AppSidebar() {
@@ -24,12 +23,12 @@ export function AppSidebar() {
 
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
     isActive
-      ? "bg-primary text-primary-foreground font-medium"
+      ? "bg-primary text-black dark:text-white font-medium"
       : "hover:bg-muted/50 text-sidebar-foreground";
 
   return (
     <Sidebar
-      className={state === "collapsed" ? "w-14" : "w-60"}
+      className={(state === "collapsed" ? "w-14" : "w-60") + "border-0" }
       collapsible="icon"
     >
       <SidebarContent className="bg-sidebar border-r border-sidebar-border">
@@ -49,7 +48,7 @@ export function AppSidebar() {
           </div>
         </div>
 
-        <SidebarGroup className="px-2 py-4 dark:text-white">
+        <SidebarGroup className="px-2 py-4 ">
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
