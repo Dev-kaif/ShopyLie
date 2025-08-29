@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "@/components/Layout/Layout";
 import Dashboard from "@/components/pages/Dashboard";
 import Products from "@/components/pages/Products";
@@ -18,7 +18,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <HashRouter>
         <Layout>
           <AnimatePresence mode="wait">
             <Routes>
@@ -30,7 +30,7 @@ const App = () => (
             </Routes>
           </AnimatePresence>
         </Layout>
-      </BrowserRouter>
+      </HashRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
