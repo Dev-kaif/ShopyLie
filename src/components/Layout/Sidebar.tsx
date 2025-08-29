@@ -40,7 +40,7 @@ export function AppSidebar() {
             {state !== "collapsed" && (
               <div className="flex flex-col">
                 <span className="text-sidebar-foreground font-semibold text-sm">
-                  Mission Control
+                  ShopyLie Admin
                 </span>
                 <span className="text-muted-foreground text-xs">Dashboard</span>
               </div>
