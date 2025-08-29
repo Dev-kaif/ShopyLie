@@ -41,6 +41,25 @@ This project goes beyond a simple CRUD app and includes a wide range of professi
 
 ---
 
+## ⚠️ API Limitations & Simulations
+
+Due to the nature of the **DummyJSON API**, several features were simulated on the client-side to provide a complete user experience:
+
+- **CRUD Persistence**  
+  The DummyJSON API simulates success for `POST`, `PUT`, and `DELETE` requests but does not actually save, update, or delete data on the server.  
+  To handle this, the project uses manual cache updates with **TanStack Query** so the UI reacts instantly as if the changes were persisted.
+
+- **Orders Page**  
+  The API does not provide a dedicated `/orders` endpoint. The Orders page was created by repurposing the `/carts` endpoint to simulate a list of customer orders.
+
+- **Order Status**  
+  Each order status (`Processing`, `Shipped`, etc.) is randomly generated on the client-side to create a more realistic experience.
+
+- **Time-Series Data**  
+  The "Revenue Trends" chart on the Analytics page uses synthesized monthly data since the API does not provide historical sales information.
+
+---
+
 ## 🧠 Approach & Philosophy
 
 The goal was to build a professional-grade, scalable frontend, not just meet assignment basics.  
