@@ -1,69 +1,132 @@
-# React + TypeScript + Vite
+# ShopyLie 📊
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, feature-rich product dashboard built with **React**, **TypeScript**, and **TailwindCSS**.  
+_All the data, none of the truth!_
 
-Currently, two official plugins are available:
+ShopyLie is a comprehensive dashboard for managing products, viewing analytics, and tracking orders, all powered by the **DummyJSON API**.  
+It was built to demonstrate a modern frontend stack and best practices, including robust data management with **TanStack Query** and a polished UI using **shadcn/ui**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+This project goes beyond a simple CRUD app and includes a wide range of professional features:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- 📊 **Interactive Dashboard**
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+  - Dynamic overview with key metrics and live charts for at-a-glance insights.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 📦 **Full Product Management (CRUD)**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  - Create, Read, Update, and Delete products seamlessly.
+  - **Server-Side Pagination:** Efficiently browse through hundreds of products.
+  - **Debounced Search & Filtering:** Instantly find products by name or filter by category.
+  - **Modern UI:** Slide-in panel for viewing/editing product details without leaving the page.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- 📈 **Advanced Analytics**
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  - Product distribution by category.
+  - Top brands by total stock value.
+  - Synthesized monthly revenue trends.
+
+- 🛒 **Orders Page**
+
+  - A simulated order tracking page showcasing scalability.
+
+- 🚀 **Professional UX**
+  - Dark & Light Mode with persistent theme toggle.
+  - Command Menu (`Cmd+K`) for quick navigation.
+  - Toast notifications for clear, non-intrusive feedback.
+  - Skeleton loaders and robust error handling.
+
+---
+
+## 🧠 Approach & Philosophy
+
+The goal was to build a professional-grade, scalable frontend, not just meet assignment basics.  
+Three guiding principles shaped the architecture:
+
+1. **Server State is King**  
+   All API interactions are handled exclusively by **TanStack Query**.  
+   This centralizes fetching, caching, and mutations, keeping UI clean and snappy with background refetching and auto cache updates.
+
+2. **Single Source of Truth for Data**  
+   Data schemas are defined with **Zod**, and TypeScript types are inferred directly from them.  
+   This ensures runtime validation and static typing stay in sync, eliminating entire categories of bugs.
+
+3. **User Experience is a Feature**  
+   Cmd+K command menu, toast notifications, and smooth page transitions were deliberately added to make the app modern, responsive, and enjoyable.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+- **Framework:** React (with Vite)  
+  _Fast UI + lightning-fast dev server and optimized builds._
+
+- **Language:** TypeScript  
+  _Static typing, safer refactoring, and fewer runtime errors._
+
+- **Data Fetching & State Management:** TanStack Query  
+  _Definitive server-state manager with caching, background updates, and simplified error/loading handling._
+
+- **Forms & Validation:** React Hook Form + Zod  
+  _Single schema source of truth → Type inference + runtime validation._
+
+- **Styling:** TailwindCSS  
+  _Utility-first CSS for rapid, consistent UI development._
+
+- **UI Components:** shadcn/ui  
+  _Accessible, unstyled building blocks with full control over design._
+
+- **Charts:** Recharts  
+  _Composable, interactive data visualizations._
+
+- **API:** DummyJSON  
+  _Realistic REST API with products, carts, and users._
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or later)
+- npm (comes with Node.js) or [yarn](https://yarnpkg.com/)
+
+---
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/your-username/shopylie.git
+   ```
+
+2. **Navigate to the project directory**
+
+   ```bash
+   cd shopylie
+   ```
+
+3. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+   _(or use `yarn install` if you prefer yarn)_
+
+4. **Run the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+---
+
+### Open in Browser
+
+After starting the dev server, open:
+👉 [http://localhost:5173](http://localhost:5173)
